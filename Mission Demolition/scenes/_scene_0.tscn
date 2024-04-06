@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=3 uid="uid://puslsuyt8s6p"]
+
+[ext_resource type="Material" uid="uid://bo5htdte0aufn" path="res://materials/m_slingshot.tres" id="1_yw4aa"]
+
+[sub_resource type="Environment" id="Environment_aq6dh"]
+background_mode = 1
+background_color = Color(0.294118, 0.862745, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2qpqi"]
+albedo_color = Color(0.490196, 0.360784, 0.223529, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_u2lbn"]
+size = Vector3(100, 1, 4)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_6kvig"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_18d8e"]
+radius = 3.0
+
+[node name="_Scene_0" type="Node3D"]
+
+[node name="MainCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+environment = SubResource("Environment_aq6dh")
+projection = 1
+size = 20.0
+near = 0.3
+far = 1000.0
+
+[node name="DirectionalLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866025, 0.25, -0.433013, 0, 0.866025, 0.5, 0.5, -0.433013, 0.75, -10, 0, 0)
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
+material_override = SubResource("StandardMaterial3D_2qpqi")
+mesh = SubResource("BoxMesh_u2lbn")
+
+[node name="Slingshot" type="Node3D" parent="."]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -10, -10, 0)
+
+[node name="Base" type="MeshInstance3D" parent="Slingshot"]
+transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 1, 0)
+mesh = SubResource("CylinderMesh_6kvig")
+surface_material_override/0 = ExtResource("1_yw4aa")
+
+[node name="LeftArm" type="MeshInstance3D" parent="Slingshot"]
+transform = Transform3D(0.5, 0, 0, 0, 0.999849, 0.353553, 0, -0.999849, 0.353553, 0, 3, -1)
+mesh = SubResource("CylinderMesh_6kvig")
+surface_material_override/0 = ExtResource("1_yw4aa")
+
+[node name="RightArm" type="MeshInstance3D" parent="Slingshot"]
+transform = Transform3D(0.5, 0, 0, 0, 0.999849, -0.353553, 0, 0.999849, 0.353553, 0, 3, 1)
+mesh = SubResource("CylinderMesh_6kvig")
+surface_material_override/0 = ExtResource("1_yw4aa")
+
+[node name="SphereArea" type="Area3D" parent="Slingshot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Slingshot/SphereArea"]
+shape = SubResource("SphereShape3D_18d8e")
+
+[node name="LaunchPoint" type="Node3D" parent="Slingshot"]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 0, 4, 0)
