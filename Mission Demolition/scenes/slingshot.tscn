@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://2ixybb6dciwd"]
+
+[ext_resource type="Script" path="res://scripts/Slingshot.gd" id="1_bjtgp"]
+[ext_resource type="Material" uid="uid://bo5htdte0aufn" path="res://materials/m_slingshot.tres" id="2_l520k"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_6kvig"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_18d8e"]
+radius = 3.0
+
+[node name="Slingshot" type="Node3D"]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -10, -10, 0)
+script = ExtResource("1_bjtgp")
+velocity_mult = 20.0
+
+[node name="Base" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 1, 0)
+mesh = SubResource("CylinderMesh_6kvig")
+surface_material_override/0 = ExtResource("2_l520k")
+
+[node name="LeftArm" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.999849, 0.353553, 0, -0.999849, 0.353553, 0, 3, -1)
+mesh = SubResource("CylinderMesh_6kvig")
+surface_material_override/0 = ExtResource("2_l520k")
+
+[node name="RightArm" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.999849, -0.353553, 0, 0.999849, 0.353553, 0, 3, 1)
+mesh = SubResource("CylinderMesh_6kvig")
+surface_material_override/0 = ExtResource("2_l520k")
+
+[node name="SphereArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+
+[node name="SphereCollider" type="CollisionShape3D" parent="SphereArea"]
+shape = SubResource("SphereShape3D_18d8e")
+
+[node name="LaunchPoint" type="Node3D" parent="."]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 0, 4, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="LaunchPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.992172, 1.33413, 0)
+light_color = Color(0.74902, 0.74902, 0.74902, 1)
+light_energy = 100.0
+light_size = 1.0
+omni_range = 3.816
+omni_attenuation = 2.46229
+
+[connection signal="input_event" from="SphereArea" to="." method="_on_sphere_area_input_event"]
+[connection signal="mouse_entered" from="SphereArea" to="." method="_on_sphere_area_mouse_entered"]
+[connection signal="mouse_exited" from="SphereArea" to="." method="_on_sphere_area_mouse_exited"]

@@ -1,9 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://puslsuyt8s6p"]
+[gd_scene load_steps=16 format=3 uid="uid://puslsuyt8s6p"]
 
 [ext_resource type="Environment" uid="uid://cq1pfgx8123vr" path="res://world_environment.tres" id="1_ci61d"]
 [ext_resource type="Script" path="res://scripts/Slingshot.gd" id="1_w6e8f"]
 [ext_resource type="Material" uid="uid://bo5htdte0aufn" path="res://materials/m_slingshot.tres" id="1_yw4aa"]
 [ext_resource type="Script" path="res://scripts/MainCamera.gd" id="2_q43li"]
+[ext_resource type="Script" path="res://scripts/CloudCover.gd" id="5_rq3do"]
+[ext_resource type="Texture2D" uid="uid://tnxvsblbfayq" path="res://Textures & Sprites/cloud1.png" id="6_6xqgm"]
+[ext_resource type="Texture2D" uid="uid://mysbjhcsd0rg" path="res://Textures & Sprites/cloud2.png" id="7_jx1bd"]
+[ext_resource type="Texture2D" uid="uid://bdows8g3k3v3e" path="res://Textures & Sprites/cloud3.png" id="8_stx7r"]
+[ext_resource type="Texture2D" uid="uid://gkhdqluqni60" path="res://Textures & Sprites/cloud4.png" id="9_r35gj"]
+[ext_resource type="Texture2D" uid="uid://gpg55tyddleb" path="res://Textures & Sprites/cloud5.png" id="10_g67lp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2qpqi"]
 albedo_color = Color(0.490196, 0.360784, 0.223529, 1)
@@ -46,6 +52,7 @@ shape = SubResource("BoxShape3D_v2yvj")
 [node name="Slingshot" type="Node3D" parent="."]
 transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -10, -10, 0)
 script = ExtResource("1_w6e8f")
+velocity_mult = 20.0
 
 [node name="Base" type="MeshInstance3D" parent="Slingshot"]
 transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 1, 0)
@@ -80,6 +87,10 @@ omni_range = 3.816
 omni_attenuation = 2.46229
 
 [node name="Projectiles" type="Node" parent="."]
+
+[node name="CloudCover" type="Node3D" parent="."]
+script = ExtResource("5_rq3do")
+cloud_sprites = Array[Resource]([ExtResource("6_6xqgm"), ExtResource("7_jx1bd"), ExtResource("8_stx7r"), ExtResource("9_r35gj"), ExtResource("10_g67lp")])
 
 [connection signal="input_event" from="Slingshot/SphereArea" to="Slingshot" method="_on_sphere_area_input_event"]
 [connection signal="mouse_entered" from="Slingshot/SphereArea" to="Slingshot" method="_on_sphere_area_mouse_entered"]
