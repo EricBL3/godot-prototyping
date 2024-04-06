@@ -18,3 +18,7 @@ config/icon="res://icon.svg"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/custom_gizmo_plugin/plugin.cfg")
+
+[physics]
+
+3d/sleep_threshold_linear=0.01

@@ -3,6 +3,8 @@ class_name Slingshot
 
 @onready var launch_point = $LaunchPoint
 @export var velocity_mult = 10.0
+@onready var main_camera = $"../MainCamera"
+
 
 var projectile_scene = preload("res://scenes/projectile.tscn")
 
@@ -64,4 +66,5 @@ func on_mouse_released(mouse_delta):
 	aiming_mode = false
 	projectile.freeze = false
 	projectile.linear_velocity = - mouse_delta * velocity_mult
+	main_camera.point_of_interest = projectile
 	projectile = null
