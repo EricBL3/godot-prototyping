@@ -3,15 +3,13 @@
 [ext_resource type="Environment" uid="uid://cq1pfgx8123vr" path="res://world_environment.tres" id="1_ci61d"]
 [ext_resource type="Script" path="res://scripts/MainCamera.gd" id="2_q43li"]
 [ext_resource type="PackedScene" uid="uid://2ixybb6dciwd" path="res://scenes/slingshot.tscn" id="3_qyudb"]
+[ext_resource type="Material" uid="uid://b4g7op3v8m10s" path="res://materials/m_ground.tres" id="3_uytyg"]
 [ext_resource type="Script" path="res://scripts/CloudCover.gd" id="5_rq3do"]
 [ext_resource type="Texture2D" uid="uid://tnxvsblbfayq" path="res://Textures & Sprites/cloud1.png" id="6_6xqgm"]
 [ext_resource type="Texture2D" uid="uid://mysbjhcsd0rg" path="res://Textures & Sprites/cloud2.png" id="7_jx1bd"]
 [ext_resource type="Texture2D" uid="uid://bdows8g3k3v3e" path="res://Textures & Sprites/cloud3.png" id="8_stx7r"]
 [ext_resource type="Texture2D" uid="uid://gkhdqluqni60" path="res://Textures & Sprites/cloud4.png" id="9_r35gj"]
 [ext_resource type="Texture2D" uid="uid://gpg55tyddleb" path="res://Textures & Sprites/cloud5.png" id="10_g67lp"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2qpqi"]
-albedo_color = Color(0.490196, 0.360784, 0.223529, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_u2lbn"]
 size = Vector3(400, 1, 4)
@@ -35,8 +33,8 @@ transform = Transform3D(0.866025, -0.25, 0.433013, 0, 0.866025, 0.5, -0.5, -0.43
 
 [node name="Ground" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, -10, 0)
-material_override = SubResource("StandardMaterial3D_2qpqi")
 mesh = SubResource("BoxMesh_u2lbn")
+surface_material_override/0 = ExtResource("3_uytyg")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
 
