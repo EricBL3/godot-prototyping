@@ -1,9 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://puslsuyt8s6p"]
+[gd_scene load_steps=13 format=3 uid="uid://puslsuyt8s6p"]
 
 [ext_resource type="Environment" uid="uid://cq1pfgx8123vr" path="res://world_environment.tres" id="1_ci61d"]
-[ext_resource type="Script" path="res://scripts/Slingshot.gd" id="1_w6e8f"]
-[ext_resource type="Material" uid="uid://bo5htdte0aufn" path="res://materials/m_slingshot.tres" id="1_yw4aa"]
 [ext_resource type="Script" path="res://scripts/MainCamera.gd" id="2_q43li"]
+[ext_resource type="PackedScene" uid="uid://2ixybb6dciwd" path="res://scenes/slingshot.tscn" id="3_qyudb"]
 [ext_resource type="Script" path="res://scripts/CloudCover.gd" id="5_rq3do"]
 [ext_resource type="Texture2D" uid="uid://tnxvsblbfayq" path="res://Textures & Sprites/cloud1.png" id="6_6xqgm"]
 [ext_resource type="Texture2D" uid="uid://mysbjhcsd0rg" path="res://Textures & Sprites/cloud2.png" id="7_jx1bd"]
@@ -19,11 +18,6 @@ size = Vector3(400, 1, 4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v2yvj"]
 size = Vector3(400, 1, 4)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_6kvig"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_18d8e"]
-radius = 3.0
 
 [node name="_Scene_0" type="Node3D"]
 
@@ -49,49 +43,10 @@ mesh = SubResource("BoxMesh_u2lbn")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
 shape = SubResource("BoxShape3D_v2yvj")
 
-[node name="Slingshot" type="Node3D" parent="."]
-transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -10, -10, 0)
-script = ExtResource("1_w6e8f")
-velocity_mult = 20.0
-
-[node name="Base" type="MeshInstance3D" parent="Slingshot"]
-transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 1, 0)
-mesh = SubResource("CylinderMesh_6kvig")
-surface_material_override/0 = ExtResource("1_yw4aa")
-
-[node name="LeftArm" type="MeshInstance3D" parent="Slingshot"]
-transform = Transform3D(0.5, 0, 0, 0, 0.999849, 0.353553, 0, -0.999849, 0.353553, 0, 3, -1)
-mesh = SubResource("CylinderMesh_6kvig")
-surface_material_override/0 = ExtResource("1_yw4aa")
-
-[node name="RightArm" type="MeshInstance3D" parent="Slingshot"]
-transform = Transform3D(0.5, 0, 0, 0, 0.999849, -0.353553, 0, 0.999849, 0.353553, 0, 3, 1)
-mesh = SubResource("CylinderMesh_6kvig")
-surface_material_override/0 = ExtResource("1_yw4aa")
-
-[node name="SphereArea" type="Area3D" parent="Slingshot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
-
-[node name="SphereCollider" type="CollisionShape3D" parent="Slingshot/SphereArea"]
-shape = SubResource("SphereShape3D_18d8e")
-
-[node name="LaunchPoint" type="Node3D" parent="Slingshot"]
-transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 0, 4, 0)
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Slingshot/LaunchPoint"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.992172, 1.33413, 0)
-light_color = Color(0.74902, 0.74902, 0.74902, 1)
-light_energy = 100.0
-light_size = 1.0
-omni_range = 3.816
-omni_attenuation = 2.46229
+[node name="Slingshot" parent="." instance=ExtResource("3_qyudb")]
 
 [node name="Projectiles" type="Node" parent="."]
 
 [node name="CloudCover" type="Node3D" parent="."]
 script = ExtResource("5_rq3do")
 cloud_sprites = Array[Resource]([ExtResource("6_6xqgm"), ExtResource("7_jx1bd"), ExtResource("8_stx7r"), ExtResource("9_r35gj"), ExtResource("10_g67lp")])
-
-[connection signal="input_event" from="Slingshot/SphereArea" to="Slingshot" method="_on_sphere_area_input_event"]
-[connection signal="mouse_entered" from="Slingshot/SphereArea" to="Slingshot" method="_on_sphere_area_mouse_entered"]
-[connection signal="mouse_exited" from="Slingshot/SphereArea" to="Slingshot" method="_on_sphere_area_mouse_exited"]
