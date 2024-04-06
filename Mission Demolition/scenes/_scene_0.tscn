@@ -1,10 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://puslsuyt8s6p"]
+[gd_scene load_steps=8 format=3 uid="uid://puslsuyt8s6p"]
 
+[ext_resource type="Environment" uid="uid://cq1pfgx8123vr" path="res://world_environment.tres" id="1_ci61d"]
+[ext_resource type="Script" path="res://scripts/Slingshot.gd" id="1_w6e8f"]
 [ext_resource type="Material" uid="uid://bo5htdte0aufn" path="res://materials/m_slingshot.tres" id="1_yw4aa"]
-
-[sub_resource type="Environment" id="Environment_aq6dh"]
-background_mode = 1
-background_color = Color(0.294118, 0.862745, 1, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2qpqi"]
 albedo_color = Color(0.490196, 0.360784, 0.223529, 1)
@@ -21,14 +19,14 @@ radius = 3.0
 
 [node name="MainCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
-environment = SubResource("Environment_aq6dh")
+environment = ExtResource("1_ci61d")
 projection = 1
 size = 20.0
 near = 0.3
 far = 1000.0
 
 [node name="DirectionalLight" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.866025, 0.25, -0.433013, 0, 0.866025, 0.5, 0.5, -0.433013, 0.75, -10, 0, 0)
+transform = Transform3D(0.866025, -0.25, 0.433013, 0, 0.866025, 0.5, -0.5, -0.433013, 0.75, -10, 0, 0)
 
 [node name="Ground" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
@@ -37,6 +35,7 @@ mesh = SubResource("BoxMesh_u2lbn")
 
 [node name="Slingshot" type="Node3D" parent="."]
 transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -10, -10, 0)
+script = ExtResource("1_w6e8f")
 
 [node name="Base" type="MeshInstance3D" parent="Slingshot"]
 transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 1, 0)
@@ -61,3 +60,14 @@ shape = SubResource("SphereShape3D_18d8e")
 
 [node name="LaunchPoint" type="Node3D" parent="Slingshot"]
 transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 0, 4, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Slingshot/LaunchPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.992172, 1.33413, 0)
+light_color = Color(0.74902, 0.74902, 0.74902, 1)
+light_energy = 100.0
+light_size = 1.0
+omni_range = 3.816
+omni_attenuation = 2.46229
+
+[connection signal="mouse_entered" from="Slingshot/SphereArea" to="Slingshot" method="_on_sphere_area_mouse_entered"]
+[connection signal="mouse_exited" from="Slingshot/SphereArea" to="Slingshot" method="_on_sphere_area_mouse_exited"]
