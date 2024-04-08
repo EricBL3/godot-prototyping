@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3c8amjxjh7xf"]
+
+[ext_resource type="Script" path="res://scripts/Wall.gd" id="1_dqxvp"]
+[ext_resource type="Material" uid="uid://b4g7op3v8m10s" path="res://materials/m_stone.tres" id="2_4t1kv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rf7vw"]
+size = Vector3(1, 4, 4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_n8ur5"]
+material = ExtResource("2_4t1kv")
+size = Vector3(1, 4, 4)
+
+[node name="Wall" type="RigidBody3D"]
+mass = 4.0
+script = ExtResource("1_dqxvp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_rf7vw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_n8ur5")

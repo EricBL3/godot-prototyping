@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cu5dovmmbmdb5"]
+
+[ext_resource type="Material" uid="uid://bpogbrq1m8a3p" path="res://materials/m_goal.tres" id="1_uwi33"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_3dnow"]
+size = Vector3(3, 4, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l5lpr"]
+size = Vector3(3, 4, 4)
+
+[node name="Goal" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_3dnow")
+surface_material_override/0 = ExtResource("1_uwi33")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_l5lpr")
