@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8sesmk2u0nb6"]
+
+[ext_resource type="Script" path="res://LineRenderer/LineRenderer.gd" id="1"]
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_jko0y"]
+
+[node name="LineRenderer" type="MeshInstance3D"]
+mesh = SubResource("ImmediateMesh_jko0y")
+script = ExtResource("1")
+points = [Vector3(0, 0, 0), Vector3(0, 4, 0)]
