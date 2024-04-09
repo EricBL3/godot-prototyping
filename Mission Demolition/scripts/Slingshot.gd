@@ -7,11 +7,12 @@ class_name Slingshot
 
 
 var projectile_scene = preload("res://scenes/projectile.tscn")
+var projectile_line_scene = preload("res://scenes/projectile_line.tscn")
 
 var aiming_mode : bool
 var launch_pos : Vector3
 
-var projectile
+var projectile : Projectile
 
 func _ready():
 	launch_point.visible = false
@@ -32,8 +33,6 @@ func _process(delta):
 	if mouse_delta.length() > max_magnitude:
 		mouse_delta = mouse_delta.normalized()
 		mouse_delta *= max_magnitude
-		
-	print("Mouse delta: " + str(mouse_delta))
 		
 	var proj_pos = launch_pos + mouse_delta
 	if projectile:
@@ -67,4 +66,7 @@ func on_mouse_released(mouse_delta):
 	projectile.freeze = false
 	projectile.linear_velocity = - mouse_delta * velocity_mult
 	main_camera.point_of_interest = projectile
+	var projectile_line = projectile_line_scene.instantiate()
+	projectile.add_child(projectile_line)
+	projectile_line = null
 	projectile = null

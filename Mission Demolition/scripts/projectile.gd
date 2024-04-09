@@ -16,10 +16,11 @@ func _ready():
 	awake = true
 	prev_pos = Vector3(1000, 1000, 0)
 	deltas.append(1000.0)
-	axis_lock_angular_z = true
+	axis_lock_linear_z = true
 	
 func _physics_process(delta):
-	pass
+	if sleeping:
+		awake = false
 	#if !awake || freeze:
 		#return
 		#

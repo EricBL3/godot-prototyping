@@ -30,6 +30,7 @@ func _process(delta):
 	var thickness = lerp(startThickness, endThickness, progress);
 	var nextThickness = lerp(startThickness, endThickness, progress + progressStep);
 	
+	mesh = ImmediateMesh.new()
 	mesh.clear_surfaces()
 	mesh.surface_begin(Mesh.PRIMITIVE_TRIANGLES)
 	
@@ -144,7 +145,7 @@ func corner(center, start, end, smoothing):
 	var angle = offset.angle_to(end - center)
 	
 	for i in range(1, smoothing):
-		array[i] = center + offset.rotated(axis, lerp(0, angle, float(i) / smoothing));
+		array[i] = center + offset.rotated(axis, lerp(0.0, angle, float(i) / smoothing));
 	
 	for i in range(1, smoothing + 1):
 		mesh.surface_set_uv(Vector2(0, (i - 1) / smoothing))

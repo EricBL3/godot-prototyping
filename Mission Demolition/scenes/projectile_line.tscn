@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://c655lmrpaiij4"]
+
+[ext_resource type="Script" path="res://scripts/projectile_line.gd" id="1_8xu6t"]
+[ext_resource type="PackedScene" uid="uid://c8sesmk2u0nb6" path="res://LineRenderer/LineRenderer.tscn" id="2_ov8fm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rklgy"]
+
+[node name="ProjectileLine" type="Node3D"]
+script = ExtResource("1_8xu6t")
+
+[node name="LineRenderer" parent="." instance=ExtResource("2_ov8fm")]
+material_override = SubResource("StandardMaterial3D_rklgy")
+points = [Vector3(0, 0, 0), Vector3(0.099, 1, 0)]
+startThickness = 0.25
+endThickness = 0.25
