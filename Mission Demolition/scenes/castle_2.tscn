@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqmc3l8rog1pc"]
+
+[ext_resource type="PackedScene" uid="uid://b3c8amjxjh7xf" path="res://scenes/wall.tscn" id="1_fvioo"]
+[ext_resource type="PackedScene" uid="uid://cw67jrptvfnp4" path="res://scenes/slab.tscn" id="2_58ul7"]
+[ext_resource type="PackedScene" uid="uid://cu5dovmmbmdb5" path="res://scenes/goal.tscn" id="3_ecag1"]
+
+[node name="Castle" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -9.5, 0)
+
+[node name="Wall" parent="." instance=ExtResource("1_fvioo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2, 0)
+
+[node name="Wall2" parent="." instance=ExtResource("1_fvioo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, 0)
+
+[node name="Wall3" parent="." instance=ExtResource("1_fvioo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 0)
+
+[node name="Wall4" parent="." instance=ExtResource("1_fvioo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2, 0)
+
+[node name="Wall5" parent="." instance=ExtResource("1_fvioo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 6.5, 0)
+
+[node name="Wall7" parent="." instance=ExtResource("1_fvioo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 6.5, 0)
+
+[node name="Wall8" parent="." instance=ExtResource("1_fvioo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 11, 0)
+
+[node name="Wall9" parent="." instance=ExtResource("1_fvioo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 11, 0)
+
+[node name="Wall10" parent="." instance=ExtResource("1_fvioo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.5, 0)
+
+[node name="Slab" parent="." instance=ExtResource("2_58ul7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4.25, 0)
+
+[node name="Slab2" parent="." instance=ExtResource("2_58ul7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.25, 0)
+
+[node name="Slab3" parent="." instance=ExtResource("2_58ul7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4.25, 0)
+
+[node name="Slab5" parent="." instance=ExtResource("2_58ul7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.75, 0)
+
+[node name="Slab6" parent="." instance=ExtResource("2_58ul7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.25, 0)
+
+[node name="Goal" parent="." instance=ExtResource("3_ecag1")]
